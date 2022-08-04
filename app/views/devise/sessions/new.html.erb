@@ -1,0 +1,62 @@
+<!------ Include the above in your HEAD tag ---------->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<% unless params[:gst].present? %>
+<div class="container">
+  <div id="loginbox"  class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="fund-heading txt-center">
+      <%= link_to image_tag("NPTE_logo012.png", width: 250), root_path %>
+    </div>
+    <div class="panel panel-info" >
+      <div class="panel-heading">
+        <div class="panel-title">Sign In</div>
+      </div>
+
+      <div style="padding-top:30px" class="panel-body" >
+
+        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-horizontal", id: "loginform") do |f| %>
+            <div style="margin-bottom: 25px" class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Enter Email" %>
+            </div>
+
+            <div style="margin-bottom: 25px" class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Enter Password" %>
+            </div>
+
+
+
+            <div class="input-group">
+              <div class="checkbox">
+                <label>
+                  <% if devise_mapping.rememberable? -%>
+
+                      <%= f.check_box :remember_me %>
+                      Remember Me
+
+                  <% end -%>
+                </label>
+              </div>
+            </div>
+
+
+            <div style="margin-top:10px" class="form-group">
+              <!-- Button -->
+
+              <div class="col-sm-12 controls txt-center">
+                <%= f.submit "Log in", class: "btn btn-success" %>
+              </div>
+              <div class="clear-all"></div>
+            </div>
+
+        <% end %>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+

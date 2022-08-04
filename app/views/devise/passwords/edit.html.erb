@@ -1,0 +1,55 @@
+<%#= render "devise/shared/links" %>
+<!------ Include the above in your HEAD tag ---------->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<div class="container">
+  <div id="loginbox"  class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="fund-heading txt-center">
+      <%= link_to image_tag("NPTE_logo012.png", width: 250), root_path %>
+    </div>
+
+    <div class="panel panel-info" >
+      <div class="panel-heading">
+        <div class="panel-title">Change your password</div>
+      </div>
+      <div style="padding-top:30px" class="panel-body" >
+
+        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+
+            <div style="margin-bottom: 25px; width: 100%;" class="input-group">
+              <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
+              <%= f.label :password, "New password" %><br />
+              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control' %>
+              <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+              <% end %>
+            </div>
+
+            <div style="margin-bottom: 25px; width: 100%;" class="input-group">
+              <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
+
+              <%= f.label :password_confirmation, "Confirm new password" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+            </div>
+
+
+            <div style="margin-top:10px" class="form-group">
+              <!-- Button -->
+
+              <div class="col-sm-12 controls txt-center">
+                <%= f.submit "Change my password", class: "btn btn-success" %>
+              </div>
+              <div class="clear-all"></div>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
